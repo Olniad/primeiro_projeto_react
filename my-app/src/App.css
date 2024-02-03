@@ -32,6 +32,7 @@
   font-size: 80%;
   justify-content: center;
   list-style-type: none;
+  background-color: rgba(150, 121, 121, 0.452);
 }
 
 .boardlist a {
@@ -55,4 +56,34 @@
 
 .banlist{
   color: rgb(189, 15, 15);
+}
+
+.form-enviar {
+  box-sizing: border-box;
+  margin-top: 1%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 1%;
+  border: 2px solid #000000; 
+  padding: 1%;
+  width: 100%;
+  max-width: 300px;
+  margin: 2% auto;
+}
+
+form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 2%; 
+}
+
+input {
+  display: block; 
+  margin-bottom: 2%; 
+  
 }

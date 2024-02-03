@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom';
 export default function Section() {
   return(
     <header>
@@ -8,9 +9,11 @@ export default function Section() {
         </legend>
         <ul>
           <li>
-            <a href="regras">
+            <Link to="#">
+            <a href="#">
               regras
             </a>
+            </Link>
           </li>
         </ul>
       </fieldset>
@@ -20,9 +23,11 @@ export default function Section() {
         </legend>
         <ul>
           <li>
+          <Link to="b">
             <a href="B.html">
               b
             </a>
+            </Link>
           </li>
         </ul>
       </fieldset>
@@ -32,14 +37,18 @@ export default function Section() {
         </legend>
         <ul>
           <li>
+          <Link to="/psico">
             <a href="psico.html">
               psico
             </a>
+            </Link>
           </li>
           <li>
+          <Link to="fitness">
             <a href="fitness.html">
               fitness
-            </a>      
+            </a>    
+            </Link>  
           </li>
         </ul>
       </fieldset>
@@ -49,14 +58,18 @@ export default function Section() {
         </legend>
         <ul>
           <li>
+          <Link to="/pirataria">
             <a href="pirataria.html">
               pirataria
             </a>
+            </Link>
           </li>
           <li>
+            <Link to="programacao">
             <a href="programacao.html">
             programação
             </a>
+            </Link>
           </li>
         </ul>
       </fieldset>
@@ -66,9 +79,11 @@ export default function Section() {
         </legend>
         <ul>
           <li>
+            <Link to="pron">
             <a href="pron">
               pron
             </a>
+            </Link>
           </li>
         </ul>
       </fieldset>
