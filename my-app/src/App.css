@@ -1,0 +1,58 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.boards{
+  display: flex;
+  flex-direction: row;
+  gap: 1%;
+  padding: 1%;
+  font-size: 100%;
+  justify-content: center;
+  background-color: rgba(150, 121, 121, 0.452);
+  list-style-type: none;
+}
+
+.boards ul {
+  list-style-type: none;
+  padding: 0; 
+  margin: 0;
+}
+
+.boards a {
+  color: inherit; 
+}
+
+.boardlist{
+  display: flex;
+  flex-direction: row;
+  gap: 1%;
+  padding: 1%;
+  font-size: 80%;
+  justify-content: center;
+  list-style-type: none;
+}
+
+.boardlist a {
+  color: inherit;
+}
+
+.ban{
+  background: #e7e4e4;
+  border: 1px solid rgb(0, 0, 0);
+  max-width: 700px;
+  margin: 30px auto;
+}
+
+.ban h2{
+  background: rgb(185, 60, 60);
+  color: #000;
+  font-size: 12pt;
+  padding: 3px 7px;
+  margin: 0;
+}
+
+.banlist{
+  color: rgb(189, 15, 15);
+}
