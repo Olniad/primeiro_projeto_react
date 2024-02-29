@@ -1,46 +1,55 @@
-import React, { useState, useEffect } from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, Route, Routes } from 'react-router-dom';
+import Catalogo from './catalogo';
+import Form from './form';
 import Header from './header';
 import ImgComponent from './imgComponent';
-import Form from './form';
-import Catalogo from './catalogo';
+import axios from 'axios';
 
-export default function B() {
+
+function ListarFios(){
   const [fios, setFios] = useState([]);
 
   useEffect(() => {
-    const fetchFios = async () => {
-      try {
-        const response = await fetch('http://localhost:8000/api/list');
-        const data = await response.json();
-        setFios(data);
-      } catch (error) {
-        console.error('Erro ao buscar fios:', error);
-      }
-    };
+    axios.get(`http://localhost:8000/api/fios`).then(res => {
+      console.log(res);
+      setFios(res.data.fios);
+    });
+  }, []);
 
-    fetchFios();
-  }, []); 
+  const ListarFios = fios.map((item, index) => (
+    <tr key={index}>
+      <td>{item.titulo}</td>
+      <td>{item.comentario}</td>
+      <td>{item.imagem}</td>
+      <td>
+        <button className='btn_apagar'>Apagar</button>
+      </td>
+    </tr>
+  ));
 
   return (
     <div>
       <Header />
       <h1>/B/ - Conteúdo aleatório.</h1>
       <ImgComponent />
-      <Form setFios={setFios} /> 
+      <Form setFios={setFios} />
       <hr />
-      <Routes>
-        <Route path="/catalogo" element={<Catalogo />} />
-      </Routes>
-      <Catalogo fios={fios} /> 
-      <ul>
+      <Catalogo fios={fios} />
+      <div className='ListarFios'> 
+        <table>
+          <tbody>
+            {ListarFios}
+          </tbody>
+        </table>
         {fios.map((fio) => (
           <li key={fio.id}>
-            <Link to={`/catalogo/${fio.id}`}>{fio.titulo}</Link>
           </li>
-        ))}
-      </ul>
+        ))}  
+      </div>
       <hr />
     </div>
   );
 }
+
+export default ListarFios;

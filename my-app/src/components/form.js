@@ -1,69 +1,54 @@
-
 import React, { useState } from 'react';
-export default function Form({ setFios }) {
-  const [titulo, setTitulo] = useState('');
-  const [comentario, setComentario] = useState('');
-  const [imagem, setImagem] = useState(null);
-  const [senha, setSenha] = useState('');
+
+function CriarFio() {
+  const [fios, setFios] = useState({
+    titulo: '',
+    comentario: '',
+    imagem: null,
+    senha: '',
+  });
+  
+  const handleInput = (e) => {
+    const { name, value } = e.target;
+    setFios((prevState) => ({
+      ...prevState,
+      [name]: value, 
+    }));
+  };
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    setImagem(file);
+    setFios((prevState) => ({
+      ...prevState,
+      imagem: file,
+    }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    const formData = new FormData();
-    formData.append('titulo', titulo);
-    formData.append('comentario', comentario);
-    formData.append('imagem', imagem);
-    formData.append('senha', senha);
-
-    try {
-      const response = await fetch('http://localhost:8000/api/cadastrar-fio', {
-        method: 'POST',
-        body: formData,
-      });
-
-      if (response.ok) {
-        // Limpar os campos do formulário após o sucesso
-        setTitulo('');
-        setComentario('');
-        setImagem(null);
-        setSenha('');
-
-        console.log('Fio cadastrado com sucesso!');
-
-        // Atualizar a lista de fios
-        const responseList = await fetch('http://localhost:8000/api/list');
-        const data = await responseList.json();
-        setFios(data);
-      } else {
-        console.error('Falha ao cadastrar fio:', response.statusText);
-      }
-    } catch (error) {
-      console.error('Erro ao enviar solicitação:', error);
-    }
+   
+    console.log('Formulário enviado:', fios);
   };
 
-return(
-<div className="form-enviar">
+  return (
+    <div className="form-enviar">
       <form onSubmit={handleSubmit}>
-        <label>Título</label>
-        <input type="text" value={titulo} onChange={(e) => setTitulo(e.target.value)} />
+        <label htmlFor="titulo">Título</label>
+        <input type="text" id="titulo" name="titulo" value={fios.titulo} onChange={handleInput} />
 
-        <label>Comentário</label>
-        <input type="text" value={comentario} onChange={(e) => setComentario(e.target.value)} />
+        <label htmlFor="comentario">Comentário</label>
+        <input type="text" id="comentario" name="comentario" value={fios.comentario} onChange={handleInput} />
 
-        <label>Selecionar</label>
-        <input type="file" accept="image/png, image/jpeg" onChange={handleFileChange} />
+        <label htmlFor="imagem">Selecionar Imagem</label>
+        <input type="file" id="imagem" name="imagem" onChange={handleFileChange} />
 
-        <label>Senha</label>
-        <input type="password" value={senha} onChange={(e) => setSenha(e.target.value)} />
-
-        <input type="submit" value="Enviar" />
+        <label htmlFor="senha">Senha</label>
+        <input type="password" id="senha" name="senha" value={fios.senha} onChange={handleInput} />
+        
+        <button type="submit">Enviar</button>
       </form>
     </div>
-);
+  );
 }
+
+export default CriarFio;

@@ -87,3 +87,10 @@ input {
   margin-bottom: 2%; 
   
 }
+
+.ListarFios{
+  display: flex;
+  justify-content: left;
+  padding: 1%;
+  
+}

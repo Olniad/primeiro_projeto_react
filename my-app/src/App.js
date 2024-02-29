@@ -10,7 +10,7 @@ import Layout from './components/layout';
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+      
         <Routes>
           <Route
             path="/"
@@ -32,7 +32,7 @@ function App() {
           <Route path="b" element={<B />} />
           <Route path="*" element={<h1>Not Found</h1>} />
         </Routes>
-      </BrowserRouter>
+      
     </div>
   );
 }
