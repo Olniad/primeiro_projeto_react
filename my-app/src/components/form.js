@@ -8,6 +8,7 @@ function CriarFio() {
     senha: '',
   });
   
+  
   const handleInput = (e) => {
     const { name, value } = e.target;
     setFios((prevState) => ({
