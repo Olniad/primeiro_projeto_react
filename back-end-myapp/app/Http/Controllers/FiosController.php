@@ -23,7 +23,7 @@ class FiosController extends Controller
         }   
     }
 
-    public function cadastro(Request $request){
+    public function cadastrar(Request $request){
         $validacao = Validator::make($request->all(),[
         'titulo' => 'required|string|max:200',
         'comentario' => 'required|string|max:200',
@@ -36,13 +36,22 @@ class FiosController extends Controller
             'status' => 422,
             'errors' => $validacao->messages()
         ],422);
-    }else{
-    $fios = Fios::cadastrar([
+    }
+
+    
+    $fios = new Fios;
+    $fios->titulo = $request->titulo;
+    $fios->imagem = $request->imagem;
+    $fios->comentario = $request->comentario;
+    $fios->senha = $request->senha;
+    /*$fios = Fios::cadastrar([
         'titulo' => $request->titulo,
         'comentario' => $request->comentario,
         'imagem' => $request->imagem,
         'senha' => $request->senha,
-        ]);
+        ]);*/
+
+        $fios->save();
 
         if($fios){
             return response()->json([
@@ -55,8 +64,8 @@ class FiosController extends Controller
                 'message' => "algo deu errado"
             ],500);           
         }
-        }
     }
+    
 
     public function listar($id){
         $fios = Fios::find($id);

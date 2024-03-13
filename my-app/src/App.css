@@ -4,6 +4,7 @@
 }
 
 .boards{
+  background-color: #ffffff;
   display: flex;
   flex-direction: row;
   gap: 1%;
@@ -79,13 +80,14 @@ form {
 }
 
 label {
+  color: black;
   margin-bottom: 2%; 
 }
 
 input {
   display: block; 
   margin-bottom: 2%; 
-  
+  color: black;
 }
 
 .ListarFios{

@@ -30,6 +30,7 @@ function ListarFios(){
 
   return (
     <div>
+      <meta name="csrf-token" content="{{ csrf_token() }}"></meta>
       <Header />
       <h1>/B/ - Conteúdo aleatório.</h1>
       <ImgComponent />
