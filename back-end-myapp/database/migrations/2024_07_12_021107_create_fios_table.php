@@ -13,10 +13,6 @@ return new class extends Migration
     {
         Schema::create('fios', function (Blueprint $table) {
             $table->id();
-            $table->string('titulo');
-            $table->string('comentario');
-            $table->binary('imagem');
-            $table->string('senha');
             $table->timestamps();
         });
     }

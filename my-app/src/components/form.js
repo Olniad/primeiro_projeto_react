@@ -1,5 +1,7 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+
+
 
 function CriarFio() {
 
@@ -11,6 +13,8 @@ function CriarFio() {
     senha: '',
   })
   
+  const imagemInputRef = useRef(null); //criando ref para input da imagem
+
   const handleInput = (e) =>{
     e.persist();
     setFios({...fios, [e.target.name]: e.target.value});
@@ -62,6 +66,19 @@ function CriarFio() {
     axios.post(`http://localhost:8000/api/fios/`, data)
     .then(res => {
       alert(res.data.message);
+
+      //definir o que vai ser resetado apos o envio do form
+      setFios({
+        titulo:'',
+        comentario:'',
+        imagem: null,
+        senha: '',
+      });
+      setInputerrorList([]);
+
+      if(imagemInputRef.current){
+        imagemInputRef.current.value='';
+      }
     })
     .catch(error => {
       if (error.response) {

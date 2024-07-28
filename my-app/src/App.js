@@ -22,7 +22,7 @@ function App() {
                   <img
                     src={process.env.PUBLIC_URL + '/kon.png'}
                     alt="Kon"
-                    style={{ width: '15%', height: 'auto' }}
+                    className="home"
                   />
                   <Bansection />
                 </main>

@@ -16,5 +16,6 @@ class Fio extends Model
         'comentario',
         'imagem',
         'senha',
+        //'foto',
     ];
 }

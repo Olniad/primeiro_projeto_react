@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('fios', function (Blueprint $table) {
             $table->id();
             $table->string('titulo');
-            $table->string('comentario');
-            $table->binary('imagem');
+            $table->text('comentario');
+            $table->binary('imagem'); // Armazenar como blob
             $table->string('senha');
             $table->timestamps();
         });
@@ -26,6 +26,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('fios');
+        Schema::table('fios', function (Blueprint $table) {
+            //
+        });
     }
 };

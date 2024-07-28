@@ -27,20 +27,14 @@ function ListarFios() {
 
 
   const ListarFios = fios.map((item, index) => (
-    <tr key={index}>
-      <td>{item.titulo}</td>
-      <td>{item.comentario}</td>
-      <td>
+    <li key={index}>
+      <h3>{item.titulo}</h3>
+      <p>{item.comentario}</p>
       <a href={`/detalhes/${item.imagem}`}>
-        <img src={`http://localhost:8000/${item.imagem}`} alt={item.titulo} style={{ width: '500px' }} />
-        </a>
-      </td>
-      <td>
-        <button className='btn_apagar'>Apagar</button>
-      </td>
-      <hr className='separador'></hr>
-    </tr>
-    
+        <img src={`http://localhost:8000/${item.imagem}`} alt={item.titulo} />
+      </a>
+      <button className='btn_apagar'>Apagar</button>
+    </li>
   ));
 
   return (
@@ -52,13 +46,12 @@ function ListarFios() {
       <Form setFios={setFios} />
       <hr />
       <Catalogo fios={fios} />
-      <hr />
       <div className='ListarFios'>
         <ul>
           {ListarFios}
         </ul>
       </div>
-      
+      <hr />
     </div>
   );
 }

@@ -3,7 +3,7 @@
   text-align: center;
 }
 
-.boards{
+.boards {
   background-color: #ffffff;
   display: flex;
   flex-direction: row;
@@ -25,7 +25,7 @@
   color: inherit; 
 }
 
-.boardlist{
+.boardlist {
   display: flex;
   flex-direction: row;
   gap: 1%;
@@ -40,14 +40,15 @@
   color: inherit;
 }
 
-.ban{
+.ban {
   background: #e7e4e4;
   border: 1px solid rgb(0, 0, 0);
   max-width: 700px;
   margin: 30px auto;
+  text-align: center;
 }
 
-.ban h2{
+.ban h2 {
   background: rgb(185, 60, 60);
   color: #000;
   font-size: 12pt;
@@ -55,7 +56,7 @@
   margin: 0;
 }
 
-.banlist{
+.banlist {
   color: rgb(189, 15, 15);
 }
 
@@ -90,9 +91,76 @@ input {
   color: black;
 }
 
-.ListarFios{
+.kon-image {
+  width: 7%;
+  height: auto;
+}
+
+.home {
+  width: 15%; 
+  height: auto;
+}
+
+.ListarFios {
   display: flex;
-  justify-content: left;
-  padding: 1%;
+  justify-content:left;
+  padding-top: 1%;
+  margin-left: 3%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto 
+}
+
+
+.ListarFios ul {
+  padding: 0;
+  list-style-type: none;
+  margin: 0;
+}
+
+.ListarFios li {
+  margin-bottom: 20px; 
+  border-bottom: 1px solid #ccc; 
+  display: flex;
   
+}
+
+.ListarFios img {
+  height: auto;
+  margin-right: 20px; 
+}
+
+
+.ListarFios td, .ListarFios th {
+  padding: 2%;
+  display: block;
+}
+
+.btn_apagar {
+  background-color: rgba(185, 60, 60, 0.8); /* Tom de vermelho discreto */
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 14px;
+  margin: 0 10px;
+  
+}
+
+.btn_apagar:hover {
+  background-color: rgba(185, 60, 60, 1); /* Cor mais forte ao passar o mouse */
+}
+
+.btn_apagar:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(185, 60, 60, 0.8);
+}
+
+.separador{
+  border: none;
+  border-top: 1px solid #000000; /* Cor e espessura da linha */
+  width: auto;
+  margin: 1% ;
 }
