@@ -164,3 +164,7 @@ input {
   width: auto;
   margin: 1% ;
 }
+
+.MuiDialog-root {
+  z-index: 1300 !important; /* Ajuste conforme necessário */
+}

@@ -132,20 +132,31 @@ class FiosController extends Controller
         }
     }
 
-    public function apagar($id)
+    public function apagar(Request $request, $id)
     {
         $fio = Fios::find($id);
-        if ($fio) {
-            $fio->delete();
-            return response()->json([
-                'status' => 200,
-                'message' => "Fio deletado"
-            ], 200);
-        } else {
+    
+        if (!$fio) {
             return response()->json([
                 'status' => 404,
                 'message' => "Fio não encontrado"
             ], 404);
         }
+    
+        // Verificando se a senha fornecida é a mesma armaznada no fio
+        if ($request->input('senha') !== $fio->senha) {
+            return response()->json([
+                'status' => 403,
+                'message' => "Senha incorreta"
+            ], 403);
+        }
+    
+        $fio->delete();
+    
+        return response()->json([
+            'status' => 200,
+            'message' => "Fio deletado com sucesso"
+        ], 200);
     }
+    
 }
