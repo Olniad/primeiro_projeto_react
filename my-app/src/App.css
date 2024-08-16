@@ -200,16 +200,17 @@ input {
   border-color: #4caf50;
 }
 
-.navbar_catalogo input[type="checkbox"]:checked::before {
-  content: '';
+/* Remove o checkmark do checkbox marcado */
+.navbar_catalogo input[type="checkbox"]::before {
+  content: ''; /* Remove qualquer conteúdo visual padrão */
   position: absolute;
-  left: 6px;
-  top: 10px;
-  width: 6px;
-  height: 12px;
-  border: solid #fff;
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  background-color: transparent;
+  z-index: 1;
 }
 
 /* Estiliza o rótulo do checkbox */
@@ -295,5 +296,28 @@ input {
   border-top: 1px solid #000000; /* Cor e espessura da linha */
   width: 100%;
   margin: 10px 0; /* Ajuste a margem superior e inferior */
+}
+
+/* Estilo para o botão */
+.btn-criar-thread {
+  background-color: #B6A2A2; /* Cor de fundo do botão */
+  color: black; /* Cor do texto do botão */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-criar-thread:hover {
+  background-color: #644949; /* Cor de fundo do botão ao passar o mouse */
+  color: #B6A2A2; /* Cor do texto do botão ao passar o mouse */
+  transform: scale(1.05); /* Aumenta ligeiramente o botão ao passar o mouse */
+}
+
+.btn-criar-thread:focus {
+  outline: none; /* Remove o contorno padrão ao focar */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Adiciona uma sombra ao focar */
 }
 
