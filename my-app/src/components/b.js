@@ -25,6 +25,23 @@ function ListarFios() {
     return () => clearInterval(interval); // Cleanup on unmount
   }, []);
 
+  const handleDelete = (id) => {
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+  
+    axios.delete(`http://localhost:8000/api/fios/${id}/apagar`, {
+      headers: {
+        'X-CSRF-TOKEN': csrfToken
+      }
+    })
+    .then(res => {
+      if (res.status === 200) {
+        setFios(fios.filter(fio => fio.id !== id)); // Remove o fio da lista
+      }
+    })
+    .catch(error => {
+      console.error('Erro ao deletar o fio:', error);
+    });
+  };
 
   const ListarFios = fios.map((item, index) => (
     <tr key={index}>
@@ -36,7 +53,7 @@ function ListarFios() {
         </a>
       </td>
       <td>
-        <button className='btn_apagar'>Apagar</button>
+      <button className='btn_apagar' onClick={() => handleDelete(item.id)}>Apagar</button>
       </td>
       <hr className='separador'></hr>
     </tr>
