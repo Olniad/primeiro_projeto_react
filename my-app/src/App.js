@@ -6,7 +6,7 @@ import Section from './components/section';
 import Bansection from './components/bansection';
 import B from './components/b';
 import Layout from './components/layout';
-
+import ListarCatalogo from './components/ListarCatalogo';
 function App() {
   return (
     <div className="App">
@@ -30,9 +30,10 @@ function App() {
             }
           />
           <Route path="b" element={<B />} />
+          <Route path="/ListarCatalogo" element={<ListarCatalogo />} />
           <Route path="*" element={<h1>Not Found</h1>} />
         </Routes>
-      
+        
     </div>
   );
 }

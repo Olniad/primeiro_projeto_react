@@ -5,6 +5,7 @@ import Form from './form';
 import Header from './header';
 import ImgComponent from './imgComponent';
 import Popup from './Popup';
+import Navbar from './navbar'
 
 function ListarFios() {
   const [fios, setFios] = useState([]);
@@ -21,11 +22,6 @@ function ListarFios() {
   useEffect(() => {
     fetchFios(); // Fetch initial data
 
-    const interval = setInterval(() => {
-      fetchFios(); // atualizar pagina
-    }, 5000); // ajustar intervalo do f5
-
-    return () => clearInterval(interval); // Cleanup on unmount
   }, []);
 
   const openPopup = (fio) => {
@@ -100,6 +96,7 @@ function ListarFios() {
         {isPopupOpen && selectedFio && (
             <Popup item={selectedFio} onClose={closePopup} />
         )}
+        <Navbar></Navbar>
     </div>
 );
 }

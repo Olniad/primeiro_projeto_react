@@ -168,3 +168,132 @@ input {
 .MuiDialog-root {
   z-index: 1300 !important; /* Ajuste conforme necessário */
 }
+
+/* Estiliza o contêiner do checkbox e do link */
+.navbar_catalogo {
+  display: flex;
+  align-items: center; /* Alinha verticalmente os itens */
+  gap: 20px; /* Espaço entre o checkbox e o link */
+  flex-wrap: nowrap; /* Garante que os itens não quebrem linha */
+  padding: 1%; /* Adiciona um pequeno espaçamento interno */
+  background-color: rgba(150, 121, 121, 0.452); /* Cor de fundo */
+  justify-content: center;
+
+}
+
+/* Estiliza o checkbox */
+.navbar_catalogo input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  appearance: none;
+  background-color: #f0f0f0;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.3s, border-color 0.3s;
+  margin: 0; /* Remove margens para melhor alinhamento */
+}
+
+.navbar_catalogo input[type="checkbox"]:checked {
+  background-color: #4caf50; /* Cor de fundo quando marcado */
+  border-color: #4caf50;
+}
+
+.navbar_catalogo input[type="checkbox"]:checked::before {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 10px;
+  width: 6px;
+  height: 12px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* Estiliza o rótulo do checkbox */
+.navbar_catalogo label {
+  font-size: 16px;
+  color: black;
+  cursor: pointer;
+  margin: 0; /* Remove margens para melhor alinhamento */
+  line-height: 20px; /* Ajusta a altura da linha para alinhamento vertical */
+  display: flex;
+  align-items: center; /* Garante alinhamento vertical do texto com o checkbox */
+}
+
+/* Estiliza o link do catálogo */
+.navbar_catalogo a {
+  font-size: 16px;
+  color: black; /* Cor padrão do link */
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Espaço entre o ícone e o texto */
+  margin: 0; /* Remove margens para melhor alinhamento */
+}
+
+.navbar_catalogo a:hover {
+  text-decoration: underline; /* Sublinhado no hover */
+}
+
+.navbar_catalogo i {
+  font-size: 20px; /* Tamanho do ícone */
+  color: #007bff; /* Cor do ícone */
+  vertical-align: middle; /* Alinha verticalmente com o texto */
+}
+
+/*teste*/
+
+/* Contêiner para a lista de fios */
+.fios-container {
+  display: flex;
+  flex-wrap: wrap; /* Permite quebra de linha quando necessário */
+  gap: 20px; /* Espaço entre os itens */
+  justify-content: center; /* Centraliza os itens horizontalmente */
+  padding: 1%;
+}
+
+/* Estilo para cada item de fio */
+.fio-item {
+  background: rgba(150, 121, 121, 0.452);
+  border: 1px solid rgb(177, 161, 161);
+  border-radius: 8px;
+  padding: 10px;
+  width: 300px; /* Largura fixa para os itens */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra sutil */
+  display: flex;
+  flex-direction: column; /* Alinha o conteúdo verticalmente */
+  align-items: center; /* Centraliza o conteúdo horizontalmente */
+}
+
+/* Estilo da imagem do fio */
+.fio-image img {
+  width: 100%; /* Ajusta a imagem para preencher o contêiner */
+  max-width: 250px; /* Limita a largura máxima da imagem */
+  border-radius: 4px;
+}
+
+/* Estilo das informações do fio */
+.fio-info {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.fio-info h2 {
+  margin: 10px 0;
+}
+
+.fio-info p {
+  margin: 0;
+}
+
+/* Estilo para o separador entre itens */
+.separador {
+  border: none;
+  border-top: 1px solid #000000; /* Cor e espessura da linha */
+  width: 100%;
+  margin: 10px 0; /* Ajuste a margem superior e inferior */
+}
+
