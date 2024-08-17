@@ -102,15 +102,13 @@ input {
 }
 
 .ListarFios {
-  display: flex;
-  justify-content:left;
+  display: block;
+  justify-content: left;
   padding-top: 1%;
   margin-left: 3%;
-  display: block;
   margin-left: auto;
-  margin-right: auto 
+  margin-right: auto;
 }
-
 
 .ListarFios ul {
   padding: 0;
@@ -121,15 +119,20 @@ input {
 .ListarFios li {
   margin-bottom: 20px; 
   border-bottom: 1px solid #ccc; 
-  display: flex;
-  
+  display: block; /* Altera para block para que os itens fiquem um abaixo do outro */
 }
 
 .ListarFios img {
-  height: auto;
-  margin-right: 20px; 
+  .ListarFios img {
+    width: 20%; /* Define a largura da imagem */
+    height: 50px; /* Define a altura da imagem */
+    margin-right: 20px; 
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: contain; /* Ajusta a imagem para caber dentro do contêiner sem cortar */
+  }
 }
-
 
 .ListarFios td, .ListarFios th {
   padding: 2%;
@@ -321,3 +324,56 @@ input {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Adiciona uma sombra ao focar */
 }
 
+.b-ListarFios {
+  display: block;
+  padding-top: 1%;
+  margin-left: 3%; /* Alinha o conteúdo à esquerda com um pequeno recuo */
+  text-align: left; /* Garante que o texto e outros conteúdos estejam alinhados à esquerda */
+  width: 20%;
+  background-color: #c2b4b4;
+  
+  
+}
+
+.b-ListarFios a {
+  text-decoration: none; /* Remove o sublinhado do link */
+  color: inherit; /* Herda a cor do elemento pai */
+}
+
+.b-ListarFios ul {
+  padding: 0;
+  list-style-type: none;
+  margin: 0;
+  color: black;
+}
+
+.b-ListarFios li {
+  margin-bottom: 20px; /* Espaço real entre cada item */
+  border-bottom: 1px solid #ccc; /* Linha de separação visual */
+  padding-bottom: 20px; /* Espaço adicional abaixo do conteúdo do item */
+  display: block; /* Mantém os itens em linha vertical */
+  align-items: center;
+}
+
+.b-ListarFios img {
+  width: 50%; /* Define a largura da imagem */
+  height: auto; /* Mantém a proporção da altura da imagem */
+  margin-right: 20px; 
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  object-fit: contain; /* Ajusta a imagem para caber dentro do contêiner sem cortar */
+}
+
+.b-ListarFios td, .ListarFios th {
+  padding: 2%;
+  display: block;
+}
+
+.text-green {
+  color: green;
+}
+
+.text-red {
+  color: red;
+}

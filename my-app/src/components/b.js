@@ -6,11 +6,24 @@ import Header from './header';
 import ImgComponent from './imgComponent';
 import Popup from './Popup';
 import Navbar from './navbar'
+import { Link } from 'react-router-dom';
 
 function ListarFios() {
   const [fios, setFios] = useState([]);
   const [selectedFio, setSelectedFio] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+
+  const colorizeText = (text) => {
+    // Verifica se o texto começa com '>' ou '<'
+    if (text.startsWith('>')) {
+      return <span className='text-green'>{text}</span>;
+    } else if (text.startsWith('<')) {
+      return <span className='text-red'>{text}</span>;
+    } else {
+      return <span>{text}</span>;
+    }
+  };
 
   const fetchFios = () => {
     axios.get(`http://localhost:8000/api/fios`).then(res => {
@@ -53,7 +66,8 @@ function ListarFios() {
     })
     .catch(error => {
       console.error('Erro ao deletar o fio:', error);
-    });
+  });
+    
 };
 
 
@@ -76,29 +90,62 @@ function ListarFios() {
 
   return (
     <div>
-        <meta name="csrf-token" content="{{ csrf_token() }}"></meta>
-        <Header />
-        <h1>/B/ - Conteúdo aleatório.</h1>
-        <ImgComponent />
-        <Form setFios={setFios} />
-        <hr />
-        <Catalogo fios={fios} />
-        <hr />
-        <div className='ListarFios'>
-            {fios.length > 0 ? (
-                <ul>
-                    {ListarFios}
-                </ul>
-            ) : (
-                <p>Nenhum fio disponível para exibir.</p>
-            )}
-        </div>
-        {isPopupOpen && selectedFio && (
-            <Popup item={selectedFio} onClose={closePopup} />
-        )}
-        <Navbar></Navbar>
+      <meta name="csrf-token" content="{{ csrf_token() }}" />
+      <Header />
+      <h1>/B/ - Conteúdo aleatório.</h1>
+      <ImgComponent />
+      <Form setFios={setFios} />
+      <hr />
+      <Catalogo fios={fios} />
+      <hr />
+
+    <div className='b-ListarFios'>
+      {fios.length > 0 ? (
+        fios.map((item, index) => (
+          
+            <ul>
+              <li>
+              <Link key={index} to={`/fios/${item.id}`}>
+                <img src={`http://localhost:8000/${item.imagem}`} alt={item.titulo} className='fio-image' />
+                </Link>
+                <div className='fio-info'>
+                  <h2>{colorizeText(item.titulo)}</h2>
+                  <p>{colorizeText(item.comentario)}</p>
+                </div>
+              </li>
+            </ul>
+          
+        ))
+      ) : (
+        <p>Nenhum fio disponível para exibir.</p>
+      )}
     </div>
-);
+
+      {isPopupOpen && selectedFio && (
+        <Popup item={selectedFio} onClose={closePopup} />
+      )}
+
+      <Navbar />
+    </div>
+  );
 }
 
+
+/*  return (
+    <div className='fios-container'>
+      {fios.map((item, index) => (
+        <div key={index} className='fio-item'>
+          <div className='fio-image'>
+            <Link to={`/fios/${item.id}`}>
+              <img src={`http://localhost:8000/${item.imagem}`} alt={item.titulo} />
+            </Link>
+          </div>
+          <div className='fio-info'>
+            <h2>{item.titulo}</h2>
+            <p>{item.comentario}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  );*/
 export default ListarFios;
