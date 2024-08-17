@@ -5,7 +5,7 @@ import Form from './form';
 import Header from './header';
 import ImgComponent from './imgComponent';
 import Popup from './Popup';
-import Navbar from './navbar'
+import Navbar from './navbar';
 import { Link } from 'react-router-dom';
 
 function ListarFios() {
