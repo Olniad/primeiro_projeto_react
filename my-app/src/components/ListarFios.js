@@ -15,7 +15,6 @@ function ListarFios() {
   };
 
   const colorizeText = (text) => {
-    // Verifica se o texto começa com '>' ou '<'
     if (text.startsWith('>')) {
       return <span className='text-green'>{text}</span>;
     } else if (text.startsWith('<')) {
@@ -25,26 +24,52 @@ function ListarFios() {
     }
   };
 
+  const isVideo = (filename) => {
+    // verifica se a extensão do arquivo é de vídeo
+    return filename.endsWith('.mp4');
+  };
+
+  const isGif = (filename) => {
+    // verifica se a extensão do arquivo é GIF
+    return filename.endsWith('.gif');
+  };
+
+  const isImage = (filename) => {
+    // verifica se a extensão do arquivo é uma imagem
+    return /\.(jpg|jpeg|png|gif)$/i.test(filename);
+  };
+
   useEffect(() => {
     fetchFios(); // Fetch initial data
   }, []);
 
   return (
     <div className='fios-container'>
-    {fios.map((item, index) => (
-      <div key={index} className='fio-item'>
-        <div className='fio-image'>
-          <Link to={`/fios/${item.id}`}>
-            <img src={`http://localhost:8000/${item.imagem}`} alt={item.titulo} />
-          </Link>
+      {fios.map((item, index) => (
+        <div key={index} className='fio-item'>
+          <div className='fio-image'>
+            <Link to={`/fios/${item.id}`}>
+              {isVideo(item.imagem) ? (
+                <video width="320" height="240" controls>
+                  <source src={`http://localhost:8000/${item.imagem}`} type="video/mp4" />
+                  Seu navegador não suporta o elemento de vídeo.
+                </video>
+              ) : isGif(item.imagem) ? (
+                <img src={`http://localhost:8000/${item.imagem}`} alt={item.titulo} />
+              ) : isImage(item.imagem) ? (
+                <img src={`http://localhost:8000/${item.imagem}`} alt={item.titulo} />
+              ) : (
+                <div>Formato de mídia não suportado</div>
+              )}
+            </Link>
+          </div>
+          <div className='fio-info'>
+            <h2>{colorizeText(item.titulo)}</h2>
+            <p>{colorizeText(item.comentario)}</p>
+          </div>
         </div>
-        <div className='fio-info'>
-          <h2>{colorizeText(item.titulo)}</h2>
-          <p>{colorizeText(item.comentario)}</p>
-        </div>
-      </div>
-    ))}
-  </div>
+      ))}
+    </div>
   );
 }
 

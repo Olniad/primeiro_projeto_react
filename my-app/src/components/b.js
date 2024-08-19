@@ -13,9 +13,14 @@ function ListarFios() {
   const [selectedFio, setSelectedFio] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
+  const fetchFios = () => {
+    axios.get(`http://localhost:8000/api/fios`).then(res => {
+      console.log(res);
+      setFios(res.data.fios);
+    });
+  };
 
   const colorizeText = (text) => {
-    // Verifica se o texto começa com '>' ou '<'
     if (text.startsWith('>')) {
       return <span className='text-green'>{text}</span>;
     } else if (text.startsWith('<')) {
@@ -25,16 +30,18 @@ function ListarFios() {
     }
   };
 
-  const fetchFios = () => {
-    axios.get(`http://localhost:8000/api/fios`).then(res => {
-      console.log(res);
-      setFios(res.data.fios);
-    });
+  const isVideo = (filename) => {
+    // verificando se a extensão do arquivo é de vídeo
+    return filename.endsWith('.mp4');
+  };
+
+  const isGif = (filename) => {
+    // verificando se a extensão do arquivo é GIF
+    return filename.endsWith('.gif');
   };
 
   useEffect(() => {
     fetchFios(); // Fetch initial data
-
   }, []);
 
   const openPopup = (fio) => {
@@ -56,37 +63,18 @@ function ListarFios() {
       headers: {
         'X-CSRF-TOKEN': csrfToken
       },
-      data: { senha }  // Passando a senha junto com o ID
+      data: { senha }  // passando a senha junto com o ID
     })
     .then(res => {
       if (res.status === 200) {
-        setFios(fios.filter(fio => fio.id !== id)); // Remove o fio da lista
-        setIsPopupOpen(false); // Fecha a popup após a exclusão
+        setFios(fios.filter(fio => fio.id !== id)); // remove o fio da lista
+        setIsPopupOpen(false); // fecha a popup após a exclusão
       }
     })
     .catch(error => {
       console.error('Erro ao deletar o fio:', error);
-  });
-    
-};
-
-
-  const ListarFios = fios.map((item, index) => (
-    <tr key={index}>
-      <td>{item.titulo}</td>
-      <td>{item.comentario}</td>
-      <td>
-      <a href={`/detalhes/${item.imagem}`}>
-        <img src={`http://localhost:8000/${item.imagem}`} alt={item.titulo} style={{ width: '500px' }} />
-        </a>
-      </td>
-      <td>
-      <button className='btn_apagar' onClick={() => openPopup(item)}>Apagar</button>
-      </td>
-      <hr className='separador'></hr>
-    </tr>
-    
-  ));
+    });
+  };
 
   return (
     <div>
@@ -99,53 +87,44 @@ function ListarFios() {
       <Catalogo fios={fios} />
       <hr />
 
-    <div className='b-ListarFios'>
-      {fios.length > 0 ? (
-        fios.map((item, index) => (
-          
-            <ul>
+      <div className='b-ListarFios'>
+        {fios.length > 0 ? (
+          fios.map((item, index) => (
+            <ul key={index}>
               <li>
-              <Link key={index} to={`/fios/${item.id}`}>
-                <img src={`http://localhost:8000/${item.imagem}`} alt={item.titulo} className='fio-image' />
+                <Link to={`/fios/${item.id}`}>
+                  {isVideo(item.imagem) ? (
+                    <video width="320" height="240" controls>
+                      <source src={`http://localhost:8000/${item.imagem}`} type="video/mp4" />
+                      Seu navegador não suporta o elemento de vídeo.
+                    </video>
+                  ) : isGif(item.imagem) ? (
+                    <img src={`http://localhost:8000/${item.imagem}`} alt={item.titulo} />
+                  ) : (
+                    <img src={`http://localhost:8000/${item.imagem}`} alt={item.titulo} />
+                  )}
                 </Link>
                 <div className='fio-info'>
                   <h2>{colorizeText(item.titulo)}</h2>
                   <p>{colorizeText(item.comentario)}</p>
+                  <br></br>
+                  <button className='btn_apagar' onClick={() => openPopup(item)}>Apagar</button>
                 </div>
               </li>
             </ul>
-          
-        ))
-      ) : (
-        <p>Nenhum fio disponível para exibir.</p>
-      )}
-    </div>
+          ))
+        ) : (
+          <p>Nenhum fio disponível para exibir.</p>
+        )}
+      </div>
 
       {isPopupOpen && selectedFio && (
         <Popup item={selectedFio} onClose={closePopup} />
       )}
 
-      <Navbar />
+ <Navbar onUpdate={fetchFios} />
     </div>
   );
 }
 
-
-/*  return (
-    <div className='fios-container'>
-      {fios.map((item, index) => (
-        <div key={index} className='fio-item'>
-          <div className='fio-image'>
-            <Link to={`/fios/${item.id}`}>
-              <img src={`http://localhost:8000/${item.imagem}`} alt={item.titulo} />
-            </Link>
-          </div>
-          <div className='fio-info'>
-            <h2>{item.titulo}</h2>
-            <p>{item.comentario}</p>
-          </div>
-        </div>
-      ))}
-    </div>
-  );*/
 export default ListarFios;
